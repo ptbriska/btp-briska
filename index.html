@@ -4,14 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Briska Portal Test (BPT) - Brimo Swarnindo Karyavara Corp</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" href="briska-official-logo-01.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --rainbow-gradient: linear-gradient(135deg, #ff007f, #7f00ff, #007fff, #00d4ff, #00ff7f, #ffeb3b);
-            --glass-bg: rgba(18, 18, 24, 0.55);
-            --glass-border: rgba(255, 255, 255, 0.12);
-            --glass-card-hover: rgba(255, 255, 255, 0.08);
+            --rainbow-gradient: linear-gradient(135deg, #d9006c, #6c00d9, #006cd9, #00b3d9, #00cc66, #d9b300);
+            --bg-color: #f0f2f5;
+            --card-bg: #ffffff;
+            --card-border: #e4e6eb;
+            --text-dark: #1c1e21;
+            --text-muted: #606770;
         }
 
         * {
@@ -22,8 +26,8 @@
         }
 
         body {
-            background-color: #060609;
-            color: #ffffff;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -37,88 +41,49 @@
             width: 100vw;
             height: 100vh;
             z-index: -1;
-        }
-
-        /* Top Brand Header CTA */
-        .brand-bar {
-            width: 100%;
-            background: rgba(10, 10, 15, 0.7);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--glass-border);
-            padding: 0.8rem 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            z-index: 10;
-        }
-
-        .corp-tag {
-            font-size: 0.75rem;
-            font-weight: 800;
-            letter-spacing: 2px;
-            color: #888;
-            text-transform: uppercase;
-        }
-
-        .brand-links {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .brand-info-btn {
-            font-size: 0.75rem;
-            color: #ddd;
-            text-decoration: none;
-            padding: 0.4rem 0.9rem;
-            border-radius: 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .brand-info-btn:hover {
-            background: #ffffff;
-            color: #000;
-            border-color: #fff;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            pointer-events: none;
         }
 
         /* Main Container */
         .container {
             max-width: 1280px;
             margin: 0 auto;
-            padding: 2.5rem 1.5rem;
+            padding: 4rem 1.5rem 2rem 1.5rem;
             width: 100%;
             flex: 1;
             z-index: 1;
         }
 
-        /* Hero Title */
+        /* Hero Section & Logo */
         .hero {
             text-align: center;
-            margin-bottom: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .main-logo {
+            display: block;
+            margin: 0 auto 1.5rem auto;
+            max-width: 220px;
+            height: auto;
         }
 
         .hero h1 {
-            font-size: 3.2rem;
+            font-size: 3rem;
             font-weight: 900;
             background: var(--rainbow-gradient);
             background-size: 300% 300%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: gradientShift 6s ease infinite;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
         }
 
         .hero p {
-            color: #b0b0c0;
+            color: var(--text-muted);
             font-size: 1.1rem;
             max-width: 650px;
             margin: 0 auto;
-            font-weight: 300;
+            font-weight: 400;
         }
 
         /* Controls: Search & Tabs */
@@ -127,48 +92,47 @@
             flex-direction: column;
             align-items: center;
             gap: 1.2rem;
-            margin-bottom: 2.5rem;
+            margin-bottom: 3rem;
         }
 
         .search-box {
             width: 100%;
-            max-width: 500px;
-            position: relative;
+            max-width: 550px;
         }
 
         .search-box input {
             width: 100%;
-            padding: 0.9rem 1.2rem;
+            padding: 1rem 1.5rem;
             border-radius: 30px;
-            background: rgba(20, 20, 30, 0.7);
-            border: 1px solid var(--glass-border);
-            color: white;
-            font-size: 0.95rem;
+            background: #ffffff;
+            border: 1px solid #ccd0d5;
+            color: var(--text-dark);
+            font-size: 1rem;
             outline: none;
-            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
             transition: all 0.3s ease;
         }
 
         .search-box input:focus {
-            border-color: #00d4ff;
-            box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+            border-color: #006cd9;
+            box-shadow: 0 0 0 3px rgba(0, 108, 217, 0.15);
         }
 
         .filter-tabs {
             display: flex;
-            gap: 0.5rem;
+            gap: 0.6rem;
             flex-wrap: wrap;
             justify-content: center;
         }
 
         .tab-btn {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid var(--glass-border);
-            color: #aaa;
-            padding: 0.5rem 1.2rem;
-            border-radius: 20px;
+            background: #ffffff;
+            border: 1px solid #ccd0d5;
+            color: var(--text-muted);
+            padding: 0.6rem 1.5rem;
+            border-radius: 25px;
             cursor: pointer;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             font-weight: 600;
             transition: all 0.3s ease;
         }
@@ -178,104 +142,175 @@
             background-size: 200% 200%;
             color: #fff;
             border-color: transparent;
-            box-shadow: 0 0 12px rgba(127, 0, 255, 0.4);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
         }
 
         /* Test Links Grid */
         .portal-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 1.5rem;
+            margin-bottom: 4rem;
         }
 
         .portal-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border: 1px solid var(--glass-border);
-            border-radius: 18px;
-            padding: 1.5rem;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 2rem 1.5rem;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            position: relative;
-            overflow: hidden;
+            align-items: center;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
         }
 
         .portal-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255, 255, 255, 0.3);
-            background: var(--glass-card-hover);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+            border-color: #bcc0c6;
         }
 
         .card-badge {
-            align-self: flex-start;
-            font-size: 0.7rem;
+            display: inline-block;
+            font-size: 0.75rem;
             font-weight: 800;
-            padding: 0.25rem 0.6rem;
-            border-radius: 12px;
+            padding: 0.4rem 1rem;
+            border-radius: 15px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 0.8rem;
+            margin-bottom: 1.5rem; /* Jarak lega ke link */
         }
 
-        /* Category Badges */
-        .badge-cbt { background: rgba(0, 212, 255, 0.15); color: #00d4ff; border: 1px solid rgba(0, 212, 255, 0.3); }
-        .badge-cat { background: rgba(255, 235, 59, 0.15); color: #ffeb3b; border: 1px solid rgba(255, 235, 59, 0.3); }
-        .badge-utbk { background: rgba(0, 255, 127, 0.15); color: #00ff7f; border: 1px solid rgba(0, 255, 127, 0.3); }
-        .badge-pats { background: rgba(255, 0, 127, 0.15); color: #ff007f; border: 1px solid rgba(255, 0, 127, 0.3); }
+        .badge-cbt { background: rgba(0, 179, 217, 0.1); color: #008eb3; border: 1px solid rgba(0, 179, 217, 0.2); }
+        .badge-cat { background: rgba(217, 179, 0, 0.1); color: #b38f00; border: 1px solid rgba(217, 179, 0, 0.2); }
+        .badge-utbk { background: rgba(0, 204, 102, 0.1); color: #00994d; border: 1px solid rgba(0, 204, 102, 0.2); }
+        .badge-pats { background: rgba(217, 0, 108, 0.1); color: #b30059; border: 1px solid rgba(217, 0, 108, 0.2); }
 
         .card-domain {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             font-weight: 700;
-            color: #fff;
-            margin-bottom: 0.4rem;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
             word-break: break-all;
         }
 
         .card-brand {
-            font-size: 0.75rem;
-            color: #888;
-            margin-bottom: 0.8rem;
+            font-size: 0.8rem;
+            color: #006cd9;
             font-weight: 600;
+            margin-bottom: 1rem;
+            background: #f0f8ff;
+            padding: 0.2rem 0.8rem;
+            border-radius: 10px;
+            display: inline-block;
         }
 
         .card-desc {
-            font-size: 0.85rem;
-            color: #bbb;
-            line-height: 1.4;
-            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-bottom: 1.8rem;
             flex-grow: 1;
         }
 
         .card-btn {
             text-decoration: none;
-            text-align: center;
-            padding: 0.65rem 1rem;
+            width: 100%;
+            padding: 0.8rem;
             border-radius: 12px;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             font-weight: 700;
-            color: white;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: var(--text-dark);
+            background: #f5f6f8;
+            border: 1px solid #ccd0d5;
             transition: all 0.3s ease;
-            display: block;
         }
 
         .portal-card:hover .card-btn {
-            background: #ffffff;
-            color: #000000;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+            background: var(--text-dark);
+            color: #ffffff;
+            border-color: var(--text-dark);
+        }
+
+        /* Special Brand CTA Cards at Bottom */
+        .special-brands {
+            max-width: 1280px;
+            margin: 0 auto 3rem auto;
+            padding: 0 1.5rem;
+            width: 100%;
+            z-index: 1;
+        }
+
+        .special-brands-title {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            color: var(--text-dark);
+        }
+
+        .brand-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .brand-cta-card {
+            background: linear-gradient(145deg, #ffffff, #f8f9fa);
+            border: 1px solid #d1d5db;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            text-decoration: none;
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .brand-cta-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border-color: #006cd9;
+        }
+
+        .brand-cta-card h3 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .brand-cta-card p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .brand-cta-btn {
+            display: inline-block;
+            padding: 0.6rem 1.5rem;
+            border-radius: 20px;
+            background: #e2e8f0;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #334155;
+            transition: all 0.3s ease;
+        }
+
+        .brand-cta-card:hover .brand-cta-btn {
+            background: #006cd9;
+            color: #ffffff;
         }
 
         footer {
             text-align: center;
-            padding: 1.5rem;
-            font-size: 0.75rem;
-            color: #666;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-top: 1px solid #e4e6eb;
+            background: #ffffff;
             z-index: 1;
         }
 
@@ -287,7 +322,6 @@
 
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.2rem; }
-            .brand-bar { justify-content: center; }
         }
     </style>
 </head>
@@ -295,19 +329,9 @@
 
     <canvas id="neural-bg"></canvas>
 
-    <!-- Header CTA Informasi Holding Brand -->
-    <header class="brand-bar">
-        <div class="corp-tag">Brimo Swarnindo Karyavara Corp</div>
-        <div class="brand-links">
-            <span style="font-size: 0.75rem; color:#666; align-self:center;">Info Brand:</span>
-            <a href="https://kelasbisa.com" target="_blank" class="brand-info-btn">kelasbisa.com ↗</a>
-            <a href="https://barugahub.com" target="_blank" class="brand-info-btn">barugahub.com ↗</a>
-            <a href="https://apacaconsulting.com" target="_blank" class="brand-info-btn">apacaconsulting.com ↗</a>
-        </div>
-    </header>
-
     <div class="container">
         <div class="hero">
+            <img src="briska-official-logo-01.png" alt="Briska Official Logo" class="main-logo">
             <h1>Briska Portal Test</h1>
             <p>Pintu masuk terpadu seluruh sistem ujian CBT, CAT, UTBK, dan PATS Briska Corporation.</p>
         </div>
@@ -331,14 +355,35 @@
         </div>
     </div>
 
+    <!-- Special Brand CTA Cards di Bagian Bawah -->
+    <div class="special-brands">
+        <h2 class="special-brands-title">Eksplorasi Ekosistem Briska</h2>
+        <div class="brand-grid">
+            <a href="https://kelasbisa.com" target="_blank" class="brand-cta-card">
+                <h3 style="color:#006cd9;">Kelasbisa.com</h3>
+                <p>Hub utama akses akademik, sertifikasi BNSP, dan Bimbel terpadu.</p>
+                <span class="brand-cta-btn">Kunjungi Web ↗</span>
+            </a>
+            <a href="https://barugahub.com" target="_blank" class="brand-cta-card">
+                <h3 style="color:#d9b300;">Barugahub.com</h3>
+                <p>Pusat event eksklusif, turnamen kompetensi, dan perlombaan nasional.</p>
+                <span class="brand-cta-btn">Kunjungi Web ↗</span>
+            </a>
+            <a href="https://apacaconsulting.com" target="_blank" class="brand-cta-card">
+                <h3 style="color:#d9006c;">Apacaconsulting</h3>
+                <p>Platform khusus asesmen profesional dan tes psikometri industri.</p>
+                <span class="brand-cta-btn">Kunjungi Web ↗</span>
+            </a>
+        </div>
+    </div>
+
     <footer>
-        &copy; <span id="year"></span> Briska Corporation. System Panel Gateway.
+        &copy; <span id="year"></span> Brimo Swarnindo Karyavara Corp. System Panel Gateway.
     </footer>
 
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
 
-        // Data 22 Subdomain Lengkap
         const testDomains = [
             // CBT
             { category: 'cbt', link: 'cbt.kelasbisa.com', brand: 'kelasbisa', desc: 'General Use (Special/urgent activity or unclassified test)' },
@@ -378,7 +423,7 @@
             grid.innerHTML = '';
 
             if(data.length === 0) {
-                grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: #888; padding: 3rem;">Subdomain atau tes tidak ditemukan.</div>`;
+                grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 3rem;">Subdomain atau tes tidak ditemukan.</div>`;
                 return;
             }
 
@@ -386,8 +431,8 @@
                 const card = document.createElement('div');
                 card.className = 'portal-card';
                 card.innerHTML = `
-                    <div>
-                        <span class="card-badge badge-${item.category}">${item.category.toUpperCase()}</span>
+                    <div style="width: 100%;">
+                        <div class="card-badge badge-${item.category}">${item.category.toUpperCase()}</div>
                         <div class="card-domain">${item.link}</div>
                         <div class="card-brand">${item.brand}</div>
                         <div class="card-desc">${item.desc}</div>
@@ -398,7 +443,6 @@
             });
         }
 
-        // Filter Functionality
         function filterCategory(cat) {
             activeCategory = cat;
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
@@ -406,7 +450,6 @@
             applyFilters();
         }
 
-        // Search Functionality
         document.getElementById('searchInput').addEventListener('input', applyFilters);
 
         function applyFilters() {
@@ -421,16 +464,15 @@
             renderCards(filtered);
         }
 
-        // Initial Render
         renderCards(testDomains);
 
-        // Canvas Neural Network Multi-color Animation
+        // Canvas Animasi untuk Light Mode
         const canvas = document.getElementById('neural-bg');
         const ctx = canvas.getContext('2d');
         let width, height, particles;
         let hue = 0;
-        const particleCount = window.innerWidth < 768 ? 50 : 100;
-        const maxDistance = 140;
+        const particleCount = window.innerWidth < 768 ? 40 : 80;
+        const maxDistance = 150;
 
         function initCanvas() {
             width = canvas.width = window.innerWidth;
@@ -440,8 +482,8 @@
                 particles.push({
                     x: Math.random() * width,
                     y: Math.random() * height,
-                    vx: (Math.random() - 0.5) * 1.2,
-                    vy: (Math.random() - 0.5) * 1.2,
+                    vx: (Math.random() - 0.5) * 0.8,
+                    vy: (Math.random() - 0.5) * 0.8,
                     radius: Math.random() * 2 + 1
                 });
             }
@@ -449,7 +491,7 @@
 
         function animateCanvas() {
             ctx.clearRect(0, 0, width, height);
-            hue += 0.5;
+            hue += 0.3;
             if(hue >= 360) hue = 0;
 
             for (let i = 0; i < particles.length; i++) {
@@ -462,7 +504,7 @@
 
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
                 ctx.fill();
 
                 for (let j = i + 1; j < particles.length; j++) {
@@ -476,8 +518,9 @@
                         ctx.moveTo(p.x, p.y);
                         ctx.lineTo(p2.x, p2.y);
                         const opacity = 1 - (dist / maxDistance);
-                        ctx.strokeStyle = `hsla(${hue + (i * 4)}, 100%, 60%, ${opacity * 0.4})`;
-                        ctx.lineWidth = 1;
+                        // Warna garis disesuaikan agar cocok di latar terang
+                        ctx.strokeStyle = `hsla(${hue + (i * 4)}, 70%, 50%, ${opacity * 0.2})`;
+                        ctx.lineWidth = 1.2;
                         ctx.stroke();
                     }
                 }
