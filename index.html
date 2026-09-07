@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Briska Portal Test (BPT) - Brimo Swarnindo Karyavara Corp</title>
-    <!-- Google Fonts: Inter untuk kesan Tech/Corporate -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet">
     
     <style>
         :root {
             --rainbow-gradient: linear-gradient(135deg, #ff007f, #7f00ff, #007fff, #00d4ff, #00ff7f, #ffeb3b);
-            --glass-bg: rgba(20, 20, 20, 0.4);
-            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-bg: rgba(18, 18, 24, 0.55);
+            --glass-border: rgba(255, 255, 255, 0.12);
+            --glass-card-hover: rgba(255, 255, 255, 0.08);
         }
 
         * {
@@ -22,15 +22,14 @@
         }
 
         body {
-            background-color: #050505;
+            background-color: #060609;
             color: #ffffff;
-            overflow-x: hidden;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            overflow-x: hidden;
         }
 
-        /* Canvas Background */
         #neural-bg {
             position: fixed;
             top: 0;
@@ -40,321 +39,455 @@
             z-index: -1;
         }
 
+        /* Top Brand Header CTA */
+        .brand-bar {
+            width: 100%;
+            background: rgba(10, 10, 15, 0.7);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--glass-border);
+            padding: 0.8rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            z-index: 10;
+        }
+
+        .corp-tag {
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #888;
+            text-transform: uppercase;
+        }
+
+        .brand-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .brand-info-btn {
+            font-size: 0.75rem;
+            color: #ddd;
+            text-decoration: none;
+            padding: 0.4rem 0.9rem;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .brand-info-btn:hover {
+            background: #ffffff;
+            color: #000;
+            border-color: #fff;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
         /* Main Container */
         .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem;
+            width: 100%;
             flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 4rem 2rem;
             z-index: 1;
+        }
+
+        /* Hero Title */
+        .hero {
             text-align: center;
+            margin-bottom: 2.5rem;
         }
 
-        /* Header Section */
-        .header {
-            margin-bottom: 3rem;
-            animation: fadeInDown 1.2s ease-out;
-        }
-
-        .corp-name {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            color: #aaa;
-            margin-bottom: 1rem;
-        }
-
-        .title {
-            font-size: 4rem;
+        .hero h1 {
+            font-size: 3.2rem;
             font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 1rem;
             background: var(--rainbow-gradient);
             background-size: 300% 300%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: gradientShift 6s ease infinite;
-        }
-
-        .subtitle {
-            font-size: 1.2rem;
-            color: #d1d1d1;
-            font-weight: 300;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* Brands CTA Section (Glassmorphism) */
-        .brands-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            width: 100%;
-            max-width: 1100px;
-            animation: fadeInUp 1.2s ease-out 0.3s backwards;
-        }
-
-        .brand-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            padding: 2.5rem 2rem;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-            text-decoration: none;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        /* Glow effect di belakang card saat hover */
-        .brand-card::before {
-            content: "";
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: conic-gradient(from 0deg, transparent 0%, rgba(255,255,255,0.05) 50%, transparent 100%);
-            animation: rotate 10s linear infinite;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            z-index: 0;
-        }
-
-        .brand-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(255,255,255,0.3);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.8);
-        }
-
-        .brand-card:hover::before {
-            opacity: 1;
-        }
-
-        .brand-card-content {
-            position: relative;
-            z-index: 1;
-            width: 100%;
-        }
-
-        .brand-title {
-            font-size: 1.8rem;
-            font-weight: 700;
             margin-bottom: 0.5rem;
         }
 
-        /* Spesifik warna untuk brand (mengambil elemen pelangi) */
-        .kelasbisa .brand-title { color: #00d4ff; }
-        .barugahub .brand-title { color: #ffeb3b; }
-        .apaca .brand-title { color: #ff007f; }
-
-        .brand-desc {
-            font-size: 0.95rem;
-            color: #b0b0b0;
-            margin-bottom: 2rem;
-            line-height: 1.5;
+        .hero p {
+            color: #b0b0c0;
+            font-size: 1.1rem;
+            max-width: 650px;
+            margin: 0 auto;
+            font-weight: 300;
         }
 
-        .brand-cta {
-            display: inline-block;
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            font-weight: 500;
-            font-size: 0.9rem;
+        /* Controls: Search & Tabs */
+        .controls {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.2rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .search-box {
+            width: 100%;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            border-radius: 30px;
+            background: rgba(20, 20, 30, 0.7);
+            border: 1px solid var(--glass-border);
+            color: white;
+            font-size: 0.95rem;
+            outline: none;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .search-box input:focus {
+            border-color: #00d4ff;
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+        }
+
+        .filter-tabs {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tab-btn {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--glass-border);
+            color: #aaa;
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active, .tab-btn:hover {
+            background: var(--rainbow-gradient);
+            background-size: 200% 200%;
+            color: #fff;
+            border-color: transparent;
+            box-shadow: 0 0 12px rgba(127, 0, 255, 0.4);
+        }
+
+        /* Test Links Grid */
+        .portal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .portal-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid var(--glass-border);
+            border-radius: 18px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portal-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.3);
+            background: var(--glass-card-hover);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+        }
+
+        .card-badge {
+            align-self: flex-start;
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 0.25rem 0.6rem;
+            border-radius: 12px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            border: 1px solid rgba(255,255,255,0.2);
-            transition: all 0.3s ease;
-            background: rgba(255,255,255,0.05);
+            margin-bottom: 0.8rem;
         }
 
-        .brand-card:hover .brand-cta {
-            background: #ffffff;
-            color: #050505;
-            border-color: #ffffff;
-            box-shadow: 0 0 20px rgba(255,255,255,0.4);
+        /* Category Badges */
+        .badge-cbt { background: rgba(0, 212, 255, 0.15); color: #00d4ff; border: 1px solid rgba(0, 212, 255, 0.3); }
+        .badge-cat { background: rgba(255, 235, 59, 0.15); color: #ffeb3b; border: 1px solid rgba(255, 235, 59, 0.3); }
+        .badge-utbk { background: rgba(0, 255, 127, 0.15); color: #00ff7f; border: 1px solid rgba(0, 255, 127, 0.3); }
+        .badge-pats { background: rgba(255, 0, 127, 0.15); color: #ff007f; border: 1px solid rgba(255, 0, 127, 0.3); }
+
+        .card-domain {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.4rem;
+            word-break: break-all;
         }
 
-        /* Footer */
-        footer {
-            padding: 2rem;
+        .card-brand {
+            font-size: 0.75rem;
+            color: #888;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+
+        .card-desc {
+            font-size: 0.85rem;
+            color: #bbb;
+            line-height: 1.4;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .card-btn {
+            text-decoration: none;
             text-align: center;
-            font-size: 0.8rem;
+            padding: 0.65rem 1rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: white;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        .portal-card:hover .card-btn {
+            background: #ffffff;
+            color: #000000;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            font-size: 0.75rem;
             color: #666;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
             z-index: 1;
         }
 
-        /* Animations */
         @keyframes gradientShift {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
 
-        @keyframes rotate {
-            100% { transform: rotate(360deg); }
-        }
-
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Responsive */
         @media (max-width: 768px) {
-            .title { font-size: 2.5rem; }
-            .brands-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.2rem; }
+            .brand-bar { justify-content: center; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Canvas for Neural Network Animation -->
     <canvas id="neural-bg"></canvas>
 
+    <!-- Header CTA Informasi Holding Brand -->
+    <header class="brand-bar">
+        <div class="corp-tag">Brimo Swarnindo Karyavara Corp</div>
+        <div class="brand-links">
+            <span style="font-size: 0.75rem; color:#666; align-self:center;">Info Brand:</span>
+            <a href="https://kelasbisa.com" target="_blank" class="brand-info-btn">kelasbisa.com ↗</a>
+            <a href="https://barugahub.com" target="_blank" class="brand-info-btn">barugahub.com ↗</a>
+            <a href="https://apacaconsulting.com" target="_blank" class="brand-info-btn">apacaconsulting.com ↗</a>
+        </div>
+    </header>
+
     <div class="container">
-        <div class="header">
-            <div class="corp-name">Brimo Swarnindo Karyavara Corp</div>
-            <h1 class="title">Briska Portal Test</h1>
-            <p class="subtitle">Satu gerbang terpadu untuk semua akses asesmen, simulasi, dan sertifikasi masa depanmu.</p>
+        <div class="hero">
+            <h1>Briska Portal Test</h1>
+            <p>Pintu masuk terpadu seluruh sistem ujian CBT, CAT, UTBK, dan PATS Briska Corporation.</p>
         </div>
 
-        <div class="brands-grid">
-            <!-- CTA Kelasbisa -->
-            <a href="https://kelasbisa.com" target="_blank" class="brand-card kelasbisa">
-                <div class="brand-card-content">
-                    <h2 class="brand-title">Kelasbisa.com</h2>
-                    <p class="brand-desc">Hub utama akses akademik, sertifikasi BNSP (Geodatis & WorkIT), Bimbel (Pilar, Nestu, Lingua, Gatra), dan UTBK.</p>
-                    <div class="brand-cta">Akses Portal</div>
-                </div>
-            </a>
+        <div class="controls">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Cari link, tes, atau bimbel (misal: BNSP, LPDP, SKD)...">
+            </div>
 
-            <!-- CTA BarugaHub -->
-            <a href="https://barugahub.com" target="_blank" class="brand-card barugahub">
-                <div class="brand-card-content">
-                    <h2 class="brand-title">Barugahub.com</h2>
-                    <p class="brand-desc">Pusat event eksklusif, turnamen kompetensi, dan perlombaan interaktif tingkat nasional.</p>
-                    <div class="brand-cta">Akses Event</div>
-                </div>
-            </a>
+            <div class="filter-tabs">
+                <button class="tab-btn active" onclick="filterCategory('all')">Semua Ujian</button>
+                <button class="tab-btn" onclick="filterCategory('cbt')">CBT Domain</button>
+                <button class="tab-btn" onclick="filterCategory('cat')">CAT Domain</button>
+                <button class="tab-btn" onclick="filterCategory('utbk')">UTBK Domain</button>
+                <button class="tab-btn" onclick="filterCategory('pats')">PATS Domain</button>
+            </div>
+        </div>
 
-            <!-- CTA APACA -->
-            <a href="https://apacaconsulting.com" target="_blank" class="brand-card apaca">
-                <div class="brand-card-content">
-                    <h2 class="brand-title">Apacaconsulting</h2>
-                    <p class="brand-desc">Platform khusus asesmen profesional, tes psikometri, dan aptitude test system (PATS).</p>
-                    <div class="brand-cta">Akses PATS</div>
-                </div>
-            </a>
+        <div class="portal-grid" id="portalGrid">
+            <!-- Data Link Ujian Rendered via JavaScript -->
         </div>
     </div>
 
     <footer>
-        &copy; <span id="year"></span> Brimo Swarnindo Karyavara Corp. Hak Cipta Dilindungi.<br>
-        Briska Portal Test (BPT) System Architecture
+        &copy; <span id="year"></span> Briska Corporation. System Panel Gateway.
     </footer>
 
-    <!-- JS for Neural Network Multi-color Canvas Background -->
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
 
+        // Data 22 Subdomain Lengkap
+        const testDomains = [
+            // CBT
+            { category: 'cbt', link: 'cbt.kelasbisa.com', brand: 'kelasbisa', desc: 'General Use (Special/urgent activity or unclassified test)' },
+            { category: 'cbt', link: 'cbt.barugahub.com', brand: 'barugahub', desc: 'Event Perlombaan resmi dari Barugahub' },
+            { category: 'cbt', link: 'cbt01.kelasbisa.com', brand: 'Kelasbisa-geodatis', desc: 'Akses latihan soal ujian dan simulasi BNSP Geodatis' },
+            { category: 'cbt', link: 'cbt02.kelasbisa.com', brand: 'Kelasbisa-workit', desc: 'Akses latihan soal ujian dan simulasi BNSP WorkIT' },
+            { category: 'cbt', link: 'cbt10.kelasbisa.com', brand: 'Kelasbisa-pilar', desc: 'Akses latihan OSN dan KSM/OM di Bimbel Pilar' },
+            { category: 'cbt', link: 'cbt11.kelasbisa.com', brand: 'Kelasbisa-pilar', desc: 'Akses produk Try Out OSN dan KSM/OMI Mandiri' },
+            { category: 'cbt', link: 'cbt12.kelasbisa.com', brand: 'Kelasbisa-pilar', desc: 'Akses program Pilar Olympiad Challenge bulanan' },
+            { category: 'cbt', link: 'cbt20.kelasbisa.com', brand: 'Kelasbisa-Nestu', desc: 'Akses latihan UTBK, SIMAK UI, UTUL UGM, TBS LPDP Bimbel Nestu' },
+            { category: 'cbt', link: 'cbt21.kelasbisa.com', brand: 'Kelasbisa-Nestu', desc: 'Akses produk Try Out TBS LPDP Mandiri' },
+            { category: 'cbt', link: 'cbt22.kelasbisa.com', brand: 'Kelasbisa-Nestu', desc: 'Akses produk Try Out TBS LPDP bulanan' },
+            { category: 'cbt', link: 'cbt30.kelasbisa.com', brand: 'Kelasbisa-Lingua', desc: 'Akses latihan soal Bahasa Asing di Bimbel Lingua' },
+            { category: 'cbt', link: 'cbt31.kelasbisa.com', brand: 'Kelasbisa-Lingua', desc: 'Akses produk Try Out TOEFL, IELTS, HSK Mandiri' },
+            { category: 'cbt', link: 'cbt32.kelasbisa.com', brand: 'Kelasbisa-Lingua', desc: 'Akses produk Try Out TOEFL, IELTS, HSK bulanan' },
+            
+            // CAT
+            { category: 'cat', link: 'cat.kelasbisa.com', brand: 'Kelasbisa-gatra', desc: 'General Use latihan soal SKD (Special/urgent test)' },
+            { category: 'cat', link: 'cat0.kelasbisa.com', brand: 'Kelasbisa-gatra', desc: 'Akses latihan di Bimbel SKD Kedinasan Gatra' },
+            { category: 'cat', link: 'cat1.kelasbisa.com', brand: 'Kelasbisa-gatra', desc: 'Akses produk latihan soal TO Mandiri SKD' },
+            { category: 'cat', link: 'cat2.kelasbisa.com', brand: 'Kelasbisa-gatra', desc: 'Akses Challenge Try Out SKD rutin bulanan' },
+
+            // UTBK
+            { category: 'utbk', link: 'utbk.kelasbisa.com', brand: 'Kelasbisa-nestu', desc: 'General Use latihan soal UTBK PTN' },
+            { category: 'utbk', link: 'utbk1.kelasbisa.com', brand: 'Kelasbisa-nestu', desc: 'Akses produk latihan soal TO Mandiri UTBK' },
+            { category: 'utbk', link: 'utbk2.kelasbisa.com', brand: 'Kelasbisa-nestu', desc: 'Akses produk latihan event TO UTBK bulanan' },
+
+            // PATS
+            { category: 'pats', link: 'pats1.apacaconsulting.com', brand: 'APACA', desc: 'Tes PATS Mandiri kapan saja by request pelanggan' },
+            { category: 'pats', link: 'pats2.apacaconsulting.com', brand: 'APACA', desc: 'Tes PATS rutin bulanan (diawasi staf)' }
+        ];
+
+        let activeCategory = 'all';
+
+        function renderCards(data) {
+            const grid = document.getElementById('portalGrid');
+            grid.innerHTML = '';
+
+            if(data.length === 0) {
+                grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: #888; padding: 3rem;">Subdomain atau tes tidak ditemukan.</div>`;
+                return;
+            }
+
+            data.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'portal-card';
+                card.innerHTML = `
+                    <div>
+                        <span class="card-badge badge-${item.category}">${item.category.toUpperCase()}</span>
+                        <div class="card-domain">${item.link}</div>
+                        <div class="card-brand">${item.brand}</div>
+                        <div class="card-desc">${item.desc}</div>
+                    </div>
+                    <a href="https://${item.link}" target="_blank" class="card-btn">Masuk Ujian →</a>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Filter Functionality
+        function filterCategory(cat) {
+            activeCategory = cat;
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            applyFilters();
+        }
+
+        // Search Functionality
+        document.getElementById('searchInput').addEventListener('input', applyFilters);
+
+        function applyFilters() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = testDomains.filter(item => {
+                const matchCategory = activeCategory === 'all' || item.category === activeCategory;
+                const matchSearch = item.link.toLowerCase().includes(query) || 
+                                    item.brand.toLowerCase().includes(query) || 
+                                    item.desc.toLowerCase().includes(query);
+                return matchCategory && matchSearch;
+            });
+            renderCards(filtered);
+        }
+
+        // Initial Render
+        renderCards(testDomains);
+
+        // Canvas Neural Network Multi-color Animation
         const canvas = document.getElementById('neural-bg');
         const ctx = canvas.getContext('2d');
-
         let width, height, particles;
-        let hue = 0; // Untuk animasi warna pelangi
-        
-        // Konfigurasi Particle
-        const particleCount = window.innerWidth < 768 ? 60 : 120;
-        const maxDistance = 150;
+        let hue = 0;
+        const particleCount = window.innerWidth < 768 ? 50 : 100;
+        const maxDistance = 140;
 
-        function init() {
+        function initCanvas() {
             width = canvas.width = window.innerWidth;
             height = canvas.height = window.innerHeight;
             particles = [];
-
             for (let i = 0; i < particleCount; i++) {
-                particles.push(new Particle());
+                particles.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    vx: (Math.random() - 0.5) * 1.2,
+                    vy: (Math.random() - 0.5) * 1.2,
+                    radius: Math.random() * 2 + 1
+                });
             }
         }
 
-        class Particle {
-            constructor() {
-                this.x = Math.random() * width;
-                this.y = Math.random() * height;
-                this.vx = (Math.random() - 0.5) * 1.2;
-                this.vy = (Math.random() - 0.5) * 1.2;
-                this.radius = Math.random() * 2 + 1;
-            }
-
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-
-                // Pantulan dinding
-                if (this.x < 0 || this.x > width) this.vx *= -1;
-                if (this.y < 0 || this.y > height) this.vy *= -1;
-            }
-
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
-                ctx.fill();
-            }
-        }
-
-        function animate() {
+        function animateCanvas() {
             ctx.clearRect(0, 0, width, height);
-            
-            // Pergeseran warna spektrum
             hue += 0.5;
             if(hue >= 360) hue = 0;
 
             for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
-                particles[i].draw();
+                let p = particles[i];
+                p.x += p.vx;
+                p.y += p.vy;
+
+                if (p.x < 0 || p.x > width) p.vx *= -1;
+                if (p.y < 0 || p.y > height) p.vy *= -1;
+
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
+                ctx.fill();
 
                 for (let j = i + 1; j < particles.length; j++) {
-                    const dx = particles[i].x - particles[j].x;
-                    const dy = particles[i].y - particles[j].y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    let p2 = particles[j];
+                    const dx = p.x - p2.x;
+                    const dy = p.y - p2.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
 
-                    if (distance < maxDistance) {
+                    if (dist < maxDistance) {
                         ctx.beginPath();
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        
-                        // Kalkulasi opacity berdasarkan jarak, dan warna berdasarkan waktu (hue)
-                        const opacity = 1 - (distance / maxDistance);
-                        // Membuat gradasi warna pelangi yang menyala untuk garis
-                        ctx.strokeStyle = `hsla(${hue + (i % 60)}, 100%, 60%, ${opacity * 0.5})`;
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        const opacity = 1 - (dist / maxDistance);
+                        ctx.strokeStyle = `hsla(${hue + (i * 4)}, 100%, 60%, ${opacity * 0.4})`;
                         ctx.lineWidth = 1;
                         ctx.stroke();
                     }
                 }
             }
-
-            requestAnimationFrame(animate);
+            requestAnimationFrame(animateCanvas);
         }
 
-        // Initialize and handle resize
-        init();
-        animate();
-        window.addEventListener('resize', init);
+        initCanvas();
+        animateCanvas();
+        window.addEventListener('resize', initCanvas);
     </script>
 </body>
 </html>
